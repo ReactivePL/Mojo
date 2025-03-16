@@ -6,6 +6,8 @@ use warnings;
 
 use Mojo::Base 'Mojolicious::Plugin';
 
+use Mojo::ByteStream;
+
 use Reactive::Core;
 use Reactive::Mojo::TemplateRenderer;
 
@@ -50,6 +52,9 @@ or if there is initial state you want to set
 
 <%= reactive('Counter', value => 10) %>
 
+add the required JS with
+<%= reactive_js %>
+
 see Reactive::Core and Reactive::Examples for more information about creating components
 
 =cut
@@ -71,7 +76,29 @@ sub register {
 
     $app->helper(reactive => sub {
         my ($c, $component, %args) = @_;
+
         return $reactive->initial_render($component, %args);
+    });
+
+    $app->helper(reactive_js => sub {
+        my $c = shift;
+
+        my $block = <<'HTML';
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/morph@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="/assets/reactive.js"></script>
+HTML
+        return Mojo::ByteStream->new($block);
+    });
+
+    $app->routes->get('/assets/reactive.js' => sub {
+        my $c = shift;
+
+        my $path = $INC{'Reactive::Core'};
+        $path =~ s/Core.pm$/reactive.js/;
+
+        $c->res->headers->content_type('application/javascript');
+        $c->reply->static($path);
     });
 
     $app->routes->post('/reactive' => sub {
