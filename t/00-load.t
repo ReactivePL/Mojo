@@ -7,7 +7,7 @@ use Test::More;
 plan tests => 1;
 
 BEGIN {
-    use_ok( 'Reactive::Mojo' ) || print "Bail out!\n";
+    use_ok( 'Reactive::Mojo::Plugin' ) || print "Bail out!\n";
 }
 
-diag( "Testing Reactive::Mojo $Reactive::Mojo::VERSION, Perl $], $^X" );
+diag( "Testing Reactive::Mojo::Plugin $Reactive::Mojo::Plugin::VERSION, Perl $], $^X" );

@@ -6,9 +6,9 @@ use ExtUtils::MakeMaker;
 my %WriteMakefileArgs = (
     NAME             => 'Reactive::Mojo',
     AUTHOR           => q{Robert Moore <robert@r-moore.tech>},
-    VERSION_FROM     => 'lib/Reactive/Mojo.pm',
-    ABSTRACT_FROM    => 'lib/Reactive/Mojo.pm',
-    LICENSE          => 'artistic_2',
+    VERSION_FROM     => 'lib/Reactive/Mojo/Plugin.pm',
+    ABSTRACT_FROM    => 'lib/Reactive/Mojo/Plugin.pm',
+    LICENSE          => 'perl',
     MIN_PERL_VERSION => '5.006',
     CONFIGURE_REQUIRES => {
         'ExtUtils::MakeMaker' => '0',
@@ -17,8 +17,8 @@ my %WriteMakefileArgs = (
         'Test::More' => '0',
     },
     PREREQ_PM => {
-        #'ABC'              => '1.6',
-        #'Foo::Bar::Module' => '5.0401',
+        'Reactive::Core'    => '0',
+        'Mojolicious'       => '0',
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'Reactive-Mojo-*' },
