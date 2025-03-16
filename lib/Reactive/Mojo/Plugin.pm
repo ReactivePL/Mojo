@@ -98,7 +98,7 @@ HTML
         $path =~ s/Core.pm$/reactive.js/;
 
         $c->res->headers->content_type('application/javascript');
-        $c->reply->static($path);
+        $c->reply->file($path);
     });
 
     $app->routes->post('/reactive' => sub {
