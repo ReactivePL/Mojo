@@ -94,7 +94,7 @@ HTML
     $app->routes->get('/assets/reactive.js' => sub {
         my $c = shift;
 
-        my $path = $INC{'Reactive::Core'};
+        my $path = $INC{'Reactive/Core.pm'};
         $path =~ s/Core.pm$/reactive.js/;
 
         $c->res->headers->content_type('application/javascript');
