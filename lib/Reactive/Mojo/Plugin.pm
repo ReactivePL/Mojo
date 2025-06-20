@@ -17,11 +17,11 @@ Reactive::Mojo::Plugin - Mojolicious plugin for Reactive
 
 =head1 VERSION
 
-Version 0.102
+Version 0.103
 
 =cut
 
-our $VERSION = '0.102';
+our $VERSION = '0.103';
 
 
 =head1 SYNOPSIS
