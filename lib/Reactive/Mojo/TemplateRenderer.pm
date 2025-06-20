@@ -15,6 +15,10 @@ extends 'Reactive::Core::TemplateRenderer';
 has app => (is => 'ro', isa => InstanceOf['Mojolicious']);
 has controller => (is => 'lazy', isa => InstanceOf['Mojolicious::Controller']);
 
+=head2 render($self, $type, $template, %properties)
+    This method is not expected to be called directly via userland code
+    but instead will be called by Reactive::Core->_to_snapshot
+=cut
 sub render {
     my $self = shift;
     my $type = shift;
@@ -29,6 +33,10 @@ sub render {
     return $self->controller->render_to_string($arg => $template, %properties);
 }
 
+=head2 escape($self, $string)
+    This method is not expected to be called directly via userland code
+    but instead will be called by Reactive::Core::TemplateRenderer->inject_attribute
+=cut
 sub escape {
     my $self = shift;
     my $string = shift;
@@ -36,6 +44,10 @@ sub escape {
     return xml_escape($string);
 }
 
+=head2 inject_attribute($self, $html, $attribute, $value)
+    This method is not expected to be called directly via userland code
+    but instead will be called by Reactive::Core::TemplateRenderer->inject_snapshot
+=cut
 sub inject_attribute {
     my $self = shift;
     my $html = shift;

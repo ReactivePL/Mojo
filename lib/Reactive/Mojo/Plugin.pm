@@ -59,6 +59,19 @@ see Reactive::Core and Reactive::Examples for more information about creating co
 
 =cut
 
+=head2 register($self, Mojolicious $app, HashRef $conf)
+    This register method is not expected to be called directly via userland code
+    but instead will be called by Mojoicious when adding the plugin
+
+    $self->plugin(
+        'Reactive::Mojo::Plugin',
+        {
+            namespaces => [
+                'My::App::Components',
+            ],
+        },
+    );
+=cut
 sub register {
     my $self = shift;
     my $app = shift;
