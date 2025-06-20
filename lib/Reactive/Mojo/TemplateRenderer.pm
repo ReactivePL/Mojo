@@ -12,6 +12,11 @@ use Mojo::Util qw(xml_escape);
 
 extends 'Reactive::Core::TemplateRenderer';
 
+=head2 app($self)
+    This method is not expected to be called directly via userland code
+    it is set by Reactive::Mojo::Plugin and used to access some features of
+    Mojolicious such as the template processing
+=cut
 has app => (is => 'ro', isa => InstanceOf['Mojolicious']);
 has controller => (is => 'lazy', isa => InstanceOf['Mojolicious::Controller']);
 

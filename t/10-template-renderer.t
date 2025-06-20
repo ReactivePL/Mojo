@@ -2,9 +2,7 @@
 use 5.006;
 use strict;
 use warnings;
-use Test::More;
-
-plan tests => 2;
+use Test::More tests => 2;
 
 BEGIN {
     use_ok( 'Reactive::Mojo::TemplateRenderer' ) || print "Bail out!\n";
