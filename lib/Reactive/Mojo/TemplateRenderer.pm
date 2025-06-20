@@ -17,10 +17,16 @@ has controller => (is => 'lazy', isa => InstanceOf['Mojolicious::Controller']);
 
 sub render {
     my $self = shift;
+    my $type = shift;
     my $template = shift;
     my %properties = @_;
 
-    return $self->controller->render_to_string(inline => $template, %properties);
+    my $arg = lc $type;
+    if ($arg eq 'file') {
+        $arg = 'template';
+    }
+
+    return $self->controller->render_to_string($arg => $template, %properties);
 }
 
 sub escape {
